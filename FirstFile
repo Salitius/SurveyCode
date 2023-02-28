@@ -1,0 +1,97 @@
+function onSubmit(e) {
+  var toEmail = "rabeckmaniii@gmail.com"; // replace with your email address
+  var form = FormApp.getActiveForm();
+  var formResponses = form.getResponses().length +1 ;
+  var latestResponse = formResponses[formResponses.length - 1];
+
+  var response = formResponses[formResponses.length - 1];
+
+  //console.log(response.getItemResponses()[3].getResponse());
+  var c = 1;
+
+ //Number One
+  var extraversionPlus = [response.getItemResponses()[1 - c].getResponse(), response.getItemResponses()[11 - c].getResponse(),   response.getItemResponses()[21 - c].getResponse(),    response.getItemResponses()[31 - c].getResponse(),    response.getItemResponses()[41 - c].getResponse()];
+  //Six
+  var extraversionMinus = [response.getItemResponses()[6 - c].getResponse(), response.getItemResponses()[16 - c].getResponse(),   response.getItemResponses()[26 - c].getResponse(),    response.getItemResponses()[36 - c].getResponse(),    response.getItemResponses()[46 - c].getResponse()];
+  // Seven
+  var agreeablenessPlus = [response.getItemResponses()[7 - c].getResponse(), response.getItemResponses()[17 - c].getResponse(),   response.getItemResponses()[27 - c].getResponse(),    response.getItemResponses()[37 - c].getResponse(),    response.getItemResponses()[47 - c].getResponse()];
+  //Two
+  var agreeablenessMinus = [response.getItemResponses()[2 - c].getResponse(), response.getItemResponses()[12 - c].getResponse(),   response.getItemResponses()[22 - c].getResponse(),    response.getItemResponses()[32 - c].getResponse(),    response.getItemResponses()[42 - c].getResponse()];
+  //Five
+  var opennessPlus = [response.getItemResponses()[5 - c].getResponse(), response.getItemResponses()[15 - c].getResponse(),   response.getItemResponses()[25 - c].getResponse(),    response.getItemResponses()[35 - c].getResponse(),    response.getItemResponses()[45 - c].getResponse()];
+  //Ten
+  var opennessMinus = [response.getItemResponses()[10 - c].getResponse(), response.getItemResponses()[20 - c].getResponse(),   response.getItemResponses()[30 - c].getResponse(),    response.getItemResponses()[40 - c].getResponse(),    response.getItemResponses()[50 - c].getResponse()];
+  //Three
+  var concientiousnessPlus = [response.getItemResponses()[3 - c].getResponse(), response.getItemResponses()[13 - c].getResponse(),   response.getItemResponses()[23 - c].getResponse(),    response.getItemResponses()[33 - c].getResponse(),    response.getItemResponses()[43 - c].getResponse()];
+  //Eight
+  var concientiousnessMinus = [response.getItemResponses()[8 - c].getResponse(), response.getItemResponses()[18 - c].getResponse(),   response.getItemResponses()[28 - c].getResponse(),    response.getItemResponses()[38 - c].getResponse(),    response.getItemResponses()[48 - c].getResponse()];
+  //Nine
+  var neuroticismPlus = [response.getItemResponses()[9 - c].getResponse(), response.getItemResponses()[19 - c].getResponse(),   response.getItemResponses()[29 - c].getResponse(),    response.getItemResponses()[39 - c].getResponse(),    response.getItemResponses()[49 - c].getResponse()];
+  //Four
+  var neuroticismMinus = [response.getItemResponses()[4 - c].getResponse(), response.getItemResponses()[14 - c].getResponse(),   response.getItemResponses()[24 - c].getResponse(),    response.getItemResponses()[34 - c].getResponse(),    response.getItemResponses()[44 - c].getResponse()];
+
+  var sumGroup1 = 0;
+  var sumGroup2 = 0;
+  var sumGroup3 = 0;
+  var sumGroup4 = 0;
+  var sumGroup5 = 0;
+  var sumGroup6 = 0;
+  var sumGroup7 = 0;
+  var sumGroup8 = 0;
+  var sumGroup9 = 0;
+  var sumGroup10 = 0;
+
+
+  for (var i = 0; i < extraversionPlus.length; i++) {
+  sumGroup1 += Number(extraversionPlus[i]);
+  }
+
+  for (var i = 0; i < extraversionMinus.length; i++) {
+    sumGroup2 += Number(extraversionMinus[i]);
+  }
+
+   for (var i = 0; i < agreeablenessPlus.length; i++) {
+    sumGroup3 += Number(agreeablenessPlus[i]);
+  }
+
+   for (var i = 0; i < agreeablenessMinus.length; i++) {
+    sumGroup4 += Number(agreeablenessMinus[i]);
+  }
+
+   for (var i = 0; i < opennessPlus.length; i++) {
+    sumGroup5 += Number(opennessPlus[i]);
+  }
+
+   for (var i = 0; i < opennessMinus.length; i++) {
+    sumGroup6 += Number(opennessMinus[i]);
+  }
+
+   for (var i = 0; i < concientiousnessPlus.length; i++) {
+    sumGroup7 += Number(concientiousnessPlus[i]);
+  }
+
+   for (var i = 0; i < concientiousnessMinus.length; i++) {
+    sumGroup8 += Number(concientiousnessMinus[i]);
+  }
+
+   for (var i = 0; i < neuroticismPlus.length; i++) {
+    sumGroup9 += Number(neuroticismPlus[i]);
+  }
+
+   for (var i = 0; i < neuroticismMinus.length; i++) {
+    sumGroup10 += Number(neuroticismMinus[i]);
+  }
+
+  var totalExtraversion = sumGroup1 - sumGroup2;
+  var totalAgreeableness = sumGroup3 - sumGroup4
+  var totalOpenness = sumGroup5 - sumGroup6;
+  var totalconcientiousness = sumGroup7 - sumGroup8;
+  var totalNeuroticism = sumGroup9 - sumGroup10;
+
+  var emailSubject = "This is submission number " + formResponses;
+
+
+  // Send email with totals
+  var emailBody = "The total Extraversion Score is " + totalExtraversion + ". " + "The total Agreeableness is" + totalAgreeableness + ". " + "The total Openness score is" + totalOpenness + ". " + "The total concientiousness is" + totalconcientiousness + ". " + "The total Neuroticism score is" + totalNeuroticism + ".";
+  MailApp.sendEmail(toEmail, "This is submission number" + emailSubject, emailBody);
+}
